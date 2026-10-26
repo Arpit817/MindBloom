@@ -25,13 +25,13 @@ MindBloom helps students revise regularly using spaced repetition and active rec
 | Layer | Technology |
 |-------|-----------|
 | Framework | Next.js 16 (App Router) |
-| Language | TypeScript |
+| Language | JavaScript (ES6+ / JSX) |
 | Styling | Tailwind CSS v4 |
-| Database | Supabase PostgreSQL |
-| Auth | Supabase Auth |
-| Storage | Supabase Storage |
+| Database | MongoDB Atlas (M0 Free Tier) |
+| ODM | Mongoose |
+| Authentication | Native JWT (`jose` + `bcryptjs` + HTTP-only cookies) |
+| File Storage | AWS S3 (5 GB Free Tier via Presigned URLs) |
 | Validation | Zod |
-| Charts | Recharts |
 | Hosting | Vercel (free tier) |
 | Cost | ₹0 |
 
@@ -43,7 +43,8 @@ MindBloom helps students revise regularly using spaced repetition and active rec
 
 - Node.js v18+
 - npm v9+
-- A free [Supabase](https://supabase.com) account
+- A free [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) account
+- An [AWS](https://aws.amazon.com/) account (S3 5 GB free tier)
 
 ### Steps
 
@@ -61,20 +62,15 @@ MindBloom helps students revise regularly using spaced repetition and active rec
 3. **Configure environment variables**
    ```bash
    cp .env.example .env.local
-   # Edit .env.local and fill in your Supabase URL and anon key
+   # Edit .env.local and fill in your MongoDB URI and AWS S3 keys
    ```
 
-4. **Run database migrations** *(Stage 2)*
-   ```sql
-   -- Run the SQL files in supabase/migrations/ in your Supabase SQL editor
-   ```
-
-5. **Start the development server**
+4. **Start the development server**
    ```bash
    npm run dev
    ```
 
-6. Open [http://localhost:3000](http://localhost:3000)
+5. Open [http://localhost:3000](http://localhost:3000)
 
 ---
 
@@ -82,10 +78,14 @@ MindBloom helps students revise regularly using spaced repetition and active rec
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `NEXT_PUBLIC_SUPABASE_URL` | ✅ | Your Supabase project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | ✅ | Your Supabase anon/public key |
+| `MONGODB_URI` | ✅ | MongoDB Atlas connection string |
+| `JWT_SECRET` | ✅ | 32+ character random string for signing JWT cookies |
+| `AWS_REGION` | ✅ | AWS Region for your S3 bucket (e.g. `us-east-1`) |
+| `AWS_ACCESS_KEY_ID` | ✅ | IAM Access Key ID with S3 permissions |
+| `AWS_SECRET_ACCESS_KEY` | ✅ | IAM Secret Access Key |
+| `AWS_S3_BUCKET_NAME` | ✅ | Name of your AWS S3 bucket |
 
-See [`.env.example`](.env.example) for the template.
+See [`.env.example`](.env.example) and [`docs/MONGODB_S3_SETUP.md`](docs/MONGODB_S3_SETUP.md) for details.
 
 ---
 
