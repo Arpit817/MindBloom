@@ -1,5 +1,6 @@
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { ToastProvider } from "@/components/ui/Toast";
+import { AuthProvider } from "@/context/AuthContext";
 import "./globals.css";
 
 const inter = Inter({
@@ -55,9 +56,11 @@ export default function RootLayout({ children }) {
       className={`${inter.variable} ${plusJakarta.variable}`}
     >
       <body className="min-h-dvh bg-[var(--bg)] text-[var(--foreground)] antialiased">
-        <ToastProvider>
-          {children}
-        </ToastProvider>
+        <AuthProvider>
+          <ToastProvider>
+            {children}
+          </ToastProvider>
+        </AuthProvider>
       </body>
     </html>
   );
