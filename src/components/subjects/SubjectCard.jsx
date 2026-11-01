@@ -92,3 +92,4 @@ export default function SubjectCard({ subject, onEdit, onDelete }) {
     </div>
   );
 }
+

@@ -246,3 +246,4 @@ export default function SubjectModal({ isOpen, onClose, subject = null, onSucces
     />
   );
 }
+
