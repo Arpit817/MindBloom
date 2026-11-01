@@ -104,11 +104,11 @@ export default function DashboardPage() {
         />
 
         <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-semibold mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-400/30 text-xs font-semibold mb-3">
             <span>📅 {todayStr}</span>
             <span>•</span>
             <span className="flex items-center gap-1">
-              <CheckCircle2 size={12} /> Stage 5 Active: Notes &amp; Flashcards
+              <Sparkles size={12} /> Stage 6 Active: Spaced Repetition Review
             </span>
           </div>
 
@@ -116,25 +116,32 @@ export default function DashboardPage() {
             Welcome back, {firstName}! 👋
           </h1>
           <p className="text-sm text-slate-300 leading-relaxed mb-6">
-            Write structured study notes, upload diagrams directly to AWS S3, and test your memory
-            with active recall flashcards before your spaced repetition review sessions.
+            Master your knowledge with active recall and spaced repetition. Review due cards today
+            to beat the forgetting curve and lock concepts into long-term memory.
           </p>
 
           <div className="flex flex-wrap items-center gap-3">
             <Link
+              href="/review"
+              className="btn btn-primary btn-sm flex items-center gap-2 shadow-lg shadow-blue-500/25 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 border-none"
+            >
+              <Sparkles size={16} />
+              <span>Start Review ({dueNotesCount} Due)</span>
+              <ArrowRight size={14} />
+            </Link>
+            <Link
               href="/notes"
-              className="btn btn-primary btn-sm flex items-center gap-2 shadow-lg shadow-blue-500/25"
+              className="btn btn-secondary btn-sm flex items-center gap-2 bg-slate-800/80 text-white border-slate-700 hover:bg-slate-700"
             >
               <BookOpen size={16} />
-              <span>Go to Notes</span>
-              <ArrowRight size={14} />
+              <span>Notes ({notes.length})</span>
             </Link>
             <Link
               href="/subjects"
               className="btn btn-secondary btn-sm flex items-center gap-2 bg-slate-800/80 text-white border-slate-700 hover:bg-slate-700"
             >
               <Layers size={16} />
-              <span>Manage Subjects ({subjects.length})</span>
+              <span>Subjects ({subjects.length})</span>
             </Link>
           </div>
         </div>
@@ -195,10 +202,14 @@ export default function DashboardPage() {
             <h3 className="text-2xl font-extrabold text-slate-900">
               {loadingData ? "…" : dueNotesCount}
             </h3>
-            <span className="text-xs text-purple-600 font-semibold inline-flex items-center gap-1 mt-2">
+            <Link
+              href="/review"
+              className="text-xs text-purple-600 font-semibold inline-flex items-center gap-1 mt-2 hover:underline"
+            >
               <Sparkles size={12} />
-              <span>Coming in Stage 6</span>
-            </span>
+              <span>Start daily review</span>
+              <ArrowRight size={12} />
+            </Link>
           </div>
           <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center">
             <Clock size={22} />
@@ -237,7 +248,7 @@ export default function DashboardPage() {
             <div className="flex items-center gap-2 mb-1">
               <h3 className="text-base font-bold text-slate-900">Notes &amp; Flashcards</h3>
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
-                Stage 5 Active
+                Active
               </span>
             </div>
             <p className="text-xs text-slate-500 leading-relaxed mb-4">
@@ -253,23 +264,29 @@ export default function DashboardPage() {
           </Link>
         </div>
 
-        {/* Spaced Repetition Card */}
-        <div className="card p-5 bg-white border border-slate-200/80 flex flex-col justify-between opacity-85">
+        {/* Spaced Repetition Card - ACTIVE STAGE 6 */}
+        <div className="card p-5 bg-white border border-slate-200/80 flex flex-col justify-between hover:border-purple-500/40 transition-all">
           <div>
             <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-4">
               <Sparkles size={20} />
             </div>
             <div className="flex items-center gap-2 mb-1">
               <h3 className="text-base font-bold text-slate-900">Spaced Repetition</h3>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
-                Coming Stage 6
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200">
+                Stage 6 Active
               </span>
             </div>
             <p className="text-xs text-slate-500 leading-relaxed mb-4">
               10-stage exponential intervals calculate when notes need review to beat the forgetting curve.
             </p>
           </div>
-          <span className="text-xs text-slate-400 font-medium">Stage 6 will unlock review engine</span>
+          <Link
+            href="/review"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-600 hover:text-purple-700"
+          >
+            <span>Start Review Session</span>
+            <ArrowRight size={13} />
+          </Link>
         </div>
       </div>
 
