@@ -97,3 +97,4 @@ export default function DeleteSubjectModal({ isOpen, onClose, subject, onSuccess
     </div>
   );
 }
+
