@@ -86,22 +86,24 @@ export default function Sidebar() {
 
       {/* Bottom User Profile Section */}
       <div className="p-3 border-t border-white/10 flex flex-col gap-2">
-        <div className="flex items-center gap-3 px-2 py-2 rounded-xl bg-white/5">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white text-xs font-bold shrink-0">
-            {userInitial}
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-xs font-semibold text-white truncate">
-              {user?.name || "Student"}
-            </p>
-            <p className="text-[11px] text-slate-400 truncate">
-              {user?.email || "Signed in"}
-            </p>
-          </div>
+        <div className="flex items-center gap-3 px-2 py-2 rounded-xl bg-white/5 hover:bg-white/10 transition-colors group">
+          <Link href="/profile" className="flex items-center gap-3 flex-1 min-w-0">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white text-xs font-bold shrink-0">
+              {userInitial}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-semibold text-white truncate group-hover:text-brand-400 transition-colors">
+                {user?.name || "Student"}
+              </p>
+              <p className="text-[11px] text-slate-400 truncate">
+                {user?.email || "View profile"}
+              </p>
+            </div>
+          </Link>
           <button
             onClick={logout}
             title="Log Out"
-            className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors shrink-0"
             aria-label="Log out"
           >
             <LogOut size={16} />
