@@ -11,7 +11,7 @@ const LearningPlanSchema = new mongoose.Schema(
     resourceId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "LearningResource",
-      required: true,
+      default: null,
       index: true,
     },
     subjectId: {
