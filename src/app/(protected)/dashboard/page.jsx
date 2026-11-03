@@ -105,11 +105,11 @@ export default function DashboardPage() {
         />
 
         <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs font-semibold mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-semibold mb-3">
             <span>📅 {todayStr}</span>
             <span>•</span>
             <span className="flex items-center gap-1">
-              <Compass size={12} /> Stage 7 Active: Learning Plans &amp; Resources
+              <CheckCircle2 size={12} /> Stage 8: All Core Stages Complete
             </span>
           </div>
 
@@ -117,31 +117,31 @@ export default function DashboardPage() {
             Welcome back, {firstName}! 👋
           </h1>
           <p className="text-sm text-slate-300 leading-relaxed mb-6">
-            Master your knowledge with active recall, spaced repetition, and structured day-by-day learning roadmaps.
+            Master your knowledge with active recall, spaced repetition, day-by-day learning roadmaps,
+            and real-time memory retention analytics.
           </p>
 
           <div className="flex flex-wrap items-center gap-3">
             <Link
-              href="/learning"
+              href="/review"
               className="btn btn-primary btn-sm flex items-center gap-2 shadow-lg shadow-blue-500/25"
             >
-              <Compass size={16} />
-              <span>Learning Hub</span>
+              <Sparkles size={16} />
+              <span>Daily Review ({dueNotesCount} Due)</span>
               <ArrowRight size={14} />
             </Link>
             <Link
-              href="/review"
+              href="/progress"
               className="btn btn-secondary btn-sm flex items-center gap-2 bg-slate-800/80 text-white border-slate-700 hover:bg-slate-700"
             >
-              <Sparkles size={16} />
-              <span>Review ({dueNotesCount} Due)</span>
+              <span>Analytics &amp; Heatmap</span>
             </Link>
             <Link
-              href="/notes"
+              href="/learning"
               className="btn btn-secondary btn-sm flex items-center gap-2 bg-slate-800/80 text-white border-slate-700 hover:bg-slate-700"
             >
-              <BookOpen size={16} />
-              <span>Notes ({notes.length})</span>
+              <Compass size={16} />
+              <span>Learning Plans</span>
             </Link>
           </div>
         </div>
