@@ -12,6 +12,7 @@ import {
   Clock,
   CheckCircle2,
   HelpCircle,
+  Compass,
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { formatDistanceToNow } from "date-fns";
@@ -104,11 +105,11 @@ export default function DashboardPage() {
         />
 
         <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-400/30 text-xs font-semibold mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs font-semibold mb-3">
             <span>📅 {todayStr}</span>
             <span>•</span>
             <span className="flex items-center gap-1">
-              <Sparkles size={12} /> Stage 6 Active: Spaced Repetition Review
+              <Compass size={12} /> Stage 7 Active: Learning Plans &amp; Resources
             </span>
           </div>
 
@@ -116,18 +117,24 @@ export default function DashboardPage() {
             Welcome back, {firstName}! 👋
           </h1>
           <p className="text-sm text-slate-300 leading-relaxed mb-6">
-            Master your knowledge with active recall and spaced repetition. Review due cards today
-            to beat the forgetting curve and lock concepts into long-term memory.
+            Master your knowledge with active recall, spaced repetition, and structured day-by-day learning roadmaps.
           </p>
 
           <div className="flex flex-wrap items-center gap-3">
             <Link
+              href="/learning"
+              className="btn btn-primary btn-sm flex items-center gap-2 shadow-lg shadow-blue-500/25"
+            >
+              <Compass size={16} />
+              <span>Learning Hub</span>
+              <ArrowRight size={14} />
+            </Link>
+            <Link
               href="/review"
-              className="btn btn-primary btn-sm flex items-center gap-2 shadow-lg shadow-blue-500/25 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 border-none"
+              className="btn btn-secondary btn-sm flex items-center gap-2 bg-slate-800/80 text-white border-slate-700 hover:bg-slate-700"
             >
               <Sparkles size={16} />
-              <span>Start Review ({dueNotesCount} Due)</span>
-              <ArrowRight size={14} />
+              <span>Review ({dueNotesCount} Due)</span>
             </Link>
             <Link
               href="/notes"
@@ -135,13 +142,6 @@ export default function DashboardPage() {
             >
               <BookOpen size={16} />
               <span>Notes ({notes.length})</span>
-            </Link>
-            <Link
-              href="/subjects"
-              className="btn btn-secondary btn-sm flex items-center gap-2 bg-slate-800/80 text-white border-slate-700 hover:bg-slate-700"
-            >
-              <Layers size={16} />
-              <span>Subjects ({subjects.length})</span>
             </Link>
           </div>
         </div>
@@ -218,7 +218,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Feature Navigation Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {/* Subjects Card */}
         <div className="card p-5 bg-white border border-slate-200/80 flex flex-col justify-between hover:border-brand-500/40 transition-all">
           <div>
@@ -227,7 +227,7 @@ export default function DashboardPage() {
             </div>
             <h3 className="text-base font-bold text-slate-900 mb-1">Study Subjects</h3>
             <p className="text-xs text-slate-500 leading-relaxed mb-4">
-              Organize notes into color-coded courses and view note counts at a glance.
+              Organize notes into color-coded courses and view counts.
             </p>
           </div>
           <Link
@@ -239,20 +239,20 @@ export default function DashboardPage() {
           </Link>
         </div>
 
-        {/* Notes & Flashcards Card - ACTIVE STAGE 5 */}
+        {/* Notes & Flashcards Card */}
         <div className="card p-5 bg-white border border-slate-200/80 flex flex-col justify-between hover:border-emerald-500/40 transition-all">
           <div>
             <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
               <BookOpen size={20} />
             </div>
             <div className="flex items-center gap-2 mb-1">
-              <h3 className="text-base font-bold text-slate-900">Notes &amp; Flashcards</h3>
+              <h3 className="text-base font-bold text-slate-900">Notes &amp; Cards</h3>
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
                 Active
               </span>
             </div>
             <p className="text-xs text-slate-500 leading-relaxed mb-4">
-              Write rich notes, upload diagrams directly to AWS S3, and test yourself with active recall flashcards.
+              Rich study notes, AWS S3 image diagrams, and flashcards.
             </p>
           </div>
           <Link
@@ -264,27 +264,52 @@ export default function DashboardPage() {
           </Link>
         </div>
 
-        {/* Spaced Repetition Card - ACTIVE STAGE 6 */}
+        {/* Spaced Repetition Card */}
         <div className="card p-5 bg-white border border-slate-200/80 flex flex-col justify-between hover:border-purple-500/40 transition-all">
           <div>
             <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-4">
               <Sparkles size={20} />
             </div>
             <div className="flex items-center gap-2 mb-1">
-              <h3 className="text-base font-bold text-slate-900">Spaced Repetition</h3>
+              <h3 className="text-base font-bold text-slate-900">Spaced Review</h3>
               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200">
-                Stage 6 Active
+                Active
               </span>
             </div>
             <p className="text-xs text-slate-500 leading-relaxed mb-4">
-              10-stage exponential intervals calculate when notes need review to beat the forgetting curve.
+              10-stage exponential intervals to beat the forgetting curve.
             </p>
           </div>
           <Link
             href="/review"
             className="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-600 hover:text-purple-700"
           >
-            <span>Start Review Session</span>
+            <span>Review Cards ({dueNotesCount})</span>
+            <ArrowRight size={13} />
+          </Link>
+        </div>
+
+        {/* Learning Hub Card - STAGE 7 */}
+        <div className="card p-5 bg-white border border-slate-200/80 flex flex-col justify-between hover:border-blue-500/40 transition-all">
+          <div>
+            <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
+              <Compass size={20} />
+            </div>
+            <div className="flex items-center gap-2 mb-1">
+              <h3 className="text-base font-bold text-slate-900">Learning Plans</h3>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
+                Stage 7 Active
+              </span>
+            </div>
+            <p className="text-xs text-slate-500 leading-relaxed mb-4">
+              Day-by-day study roadmaps and YouTube/web resource tracker.
+            </p>
+          </div>
+          <Link
+            href="/learning"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 hover:text-indigo-700"
+          >
+            <span>Open Learning Hub</span>
             <ArrowRight size={13} />
           </Link>
         </div>
